@@ -1,30 +1,31 @@
 <template>
   <h1>Sneaker Head</h1>
 
-  <div id=brand-drop-down>
+  <div class=filters>
     <select v-model="selectedBrand">
+      <option value="" disabled selected>Filter by Brand</option>
       <option value="">All Brands</option>
       <option v-for="brand in uniqueBrands" :key="brand" :value="brand">{{ brand }}</option>
     </select>
-  </div>
 
-  <div id=counter>
-    <p>Results: {{ getFilteredCount() }}</p>
-  </div>
-
-  <div id=availability-drop-down>
     <select v-model="selectedAvailability">
-      <option value="">All Availability</option>
+      <option value="" disabled selected>Filter by Availability</option>
+      <option value="">All Trainers</option>
       <option :value=true>In Stock</option>
     </select>
-  </div>
 
-  <div id=price-drop-down>
     <select v-model="selectedOrder">
+      <option value="" disabled selected>Filter by Price</option>
       <option value="ascending">Price: Low to High</option>
       <option value="descending">Price: High to Low</option>
     </select>
+  
+    <div id=counter>
+      <p>Results: {{ getFilteredCount() }}</p>
+    </div>
   </div>
+
+ 
 
   <div class="cards">
     <ProductCard v-for="shoe in filteredShoes"
@@ -123,4 +124,30 @@ h1 {
 @media (min-width: 900px) {
   .cards { grid-template-columns: repeat(3, 1fr); }
 }
+
+select {
+  font-family: nunito;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 10px 20px;
+  width: 14%;
+  max-width: 300px;
+  box-sizing: border-box;
+  margin-left: 2%;
+  margin-bottom: 2%; 
+}
+
+#counter {
+  font-family: nunito;
+  float: right;
+  display: in-line;
+  margin-right: 8%;
+}
+
+.filters {
+  margin-left: 6%;
+}
+
 </style>
