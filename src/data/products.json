@@ -1,0 +1,43 @@
+[
+        {
+          "id": 1,
+          "name": "Air Force 1",
+          "brand": "Nike",
+          "price": 100,
+          "image": "ShoePics/Nike_AirForce_1.jpeg",
+          "available": false
+        },
+        {
+          "id": 2,
+          "name": "Gazelle",
+          "brand": "Adidas",
+          "price": 120,
+          "image": "ShoePics/Adidas_Gazelle.jpeg",
+          "available": true
+        },
+        {
+          "id": 3,
+          "name": "Delphin",
+          "brand": "Puma",
+          "price": 80,
+          "image": "ShoePics/Puma_Delphin.jpeg",
+          "available": false
+        },
+        {
+          "id": 4,
+          "name": "Delphino",
+          "brand": "Puma",
+          "price": 99,
+          "image": "ShoePics/Puma_Delphin.jpeg",
+          "available": true
+        },
+        {
+          "id": 5,
+          "name": "Delphina",
+          "brand": "Puma",
+          "price": 100,
+          "image": "ShoePics/Puma_Delphin.jpeg",
+          "available": true
+        }
+      ]
+    
