@@ -14,8 +14,15 @@
 
   <div id=availability-drop-down>
     <select v-model="selectedAvailability">
-      <option value="available">In Stock</option>
-      <option value="brand in uniqueBrands" :key="brand" :value="brand">{{ brand }}</option>
+      <option value="">All Availability</option>
+      <option :value=true>In Stock</option>
+    </select>
+  </div>
+
+  <div id=price-drop-down>
+    <select v-model="selectedOrder">
+      <option value="ascending">Price: Low to High</option>
+      <option value="descending">Price: High to Low</option>
     </select>
   </div>
 
@@ -42,31 +49,46 @@
     export default {
       data () { return { 
           selectedBrand: "",
+          selectedAvailability: "",
+          selectedOrder: "",
           products: productShoes
         }
       },
       methods: {
         getFilteredCount() {
-          if (this.selectedBrand) { 
-            return this.products.filter(product => product.brand === this.selectedBrand).length;
-          } else {
-            return this.products.length;
-          }        
+          return this.filteredShoes.length;       
         }
       },
       computed: {
         filteredShoes() {
-          if (this.selectedBrand) {
-            return this.products.filter(product => product.brand === this.selectedBrand)
-          } else {
-            return this.products;
+          let shoes = [...this.products]
+
+          if (this.selectedBrand && this.selectedAvailability) {
+            return this.products.filter(product => product.brand === this.selectedBrand && product.available === this.selectedAvailability);
           }
-        },  
+
+          if (this.selectedBrand) {
+            return shoes.filter(shoe => shoe.brand === this.selectedBrand)
+          } 
+          
+          if (this.selectedAvailability) {
+            return shoes.filter(shoe => shoe.available === this.selectedAvailability)
+          } 
+          
+          if (this.selectedOrder === "ascending") {
+            shoes.sort((a, b) => a.price - b.price);
+          } else if (this.selectedOrder === "descending") {
+            shoes.sort((a, b) => b.price - a.price);
+          }
+          return shoes;
+        },   
         uniqueBrands() {
           return [...new Set(this.products.map((product) => product.brand))];
-        }
+        },
       }
     }
+    
+
 
 </script>
 
