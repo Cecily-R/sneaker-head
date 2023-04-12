@@ -4,7 +4,18 @@
   <div id=brand-drop-down>
     <select v-model="selectedBrand">
       <option value="">All Brands</option>
-      <option v-for="product in products" :value="product.brand">{{ product.brand }}</option>
+      <option v-for="brand in uniqueBrands" :key="brand" :value="brand">{{ brand }}</option>
+    </select>
+  </div>
+
+  <div id=counter>
+    <p>Results: {{ getFilteredCount() }}</p>
+  </div>
+
+  <div id=availability-drop-down>
+    <select v-model="selectedAvailability">
+      <option value="available">In Stock</option>
+      <option value="brand in uniqueBrands" :key="brand" :value="brand">{{ brand }}</option>
     </select>
   </div>
 
@@ -35,7 +46,13 @@
         }
       },
       methods: {
-   
+        getFilteredCount() {
+          if (this.selectedBrand) { 
+            return this.products.filter(product => product.brand === this.selectedBrand).length;
+          } else {
+            return this.products.length;
+          }        
+        }
       },
       computed: {
         filteredShoes() {
@@ -44,14 +61,16 @@
           } else {
             return this.products;
           }
-        }  
+        },  
+        uniqueBrands() {
+          return [...new Set(this.products.map((product) => product.brand))];
+        }
       }
     }
 
 </script>
 
 <style scoped>
-
 h1 {
   text-align: center;
   font-family: rubik pixels;
