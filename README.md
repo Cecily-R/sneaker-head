@@ -1,4 +1,4 @@
-Sneaker Head
+# Sneaker Head
 
 A product page incuding the ability to filter and sort products built in Vue.js
 
